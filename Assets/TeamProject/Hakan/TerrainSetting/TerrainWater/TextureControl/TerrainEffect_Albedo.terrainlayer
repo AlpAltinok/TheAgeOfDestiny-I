@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1953259897 &8574412962073106934
+TerrainLayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TerrainEffect_Albedo
+  m_DiffuseTexture: {fileID: 2800000, guid: 696ff0ab3a55f0747b0c7c8315dd653a, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: fbb7ee1efe14a6b449d3425bfcde2c8f, type: 3}
+  m_MaskMapTexture: {fileID: 2800000, guid: 5629e89f40071bd40980fa9caa13fd82, type: 3}
+  m_TileSize: {x: 400, y: 400}
+  m_TileOffset: {x: 0, y: 0}
+  m_Specular: {r: 0, g: 0, b: 0, a: 0}
+  m_Metallic: 0.406
+  m_Smoothness: 0.63
+  m_NormalScale: 1.2
+  m_DiffuseRemapMin: {x: 0, y: 0, z: 0, w: 0}
+  m_DiffuseRemapMax: {x: 1, y: 1, z: 1, w: 1}
+  m_MaskMapRemapMin: {x: 0, y: 0, z: 0, w: 0}
+  m_MaskMapRemapMax: {x: 0.402848, y: 0.5406523, z: 1, w: 0.508498}
