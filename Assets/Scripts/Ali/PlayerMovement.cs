@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     bool movementPressed;
     bool runPressed;
 
+    //input system get data
     private void Awake()
     {
         input = new PlayerInput();
@@ -36,12 +37,18 @@ public class PlayerMovement : MonoBehaviour
         };
 
         input.PlayerMovement.run.performed += ctx => runPressed = ctx.ReadValueAsButton();
-
+        input.PlayerMovement.Attack.started += ctx => Attack();
         input.PlayerMovement.Move.canceled += ctx =>
         {
             movementPressed = false;
 
         };
+    }
+
+    void Attack()
+    {
+        animator.SetTrigger("isattacking");
+
     }
     // Update is called once per frame
     void Update()
@@ -49,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
         HandleRotation();
     }
-
+    //karakter Animasyonu
     void HandleMovement()
     {
 
@@ -59,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         if (movementPressed && !isWalking)
         {
             animator.SetBool(isWalkingHash, true);
+         
         }
         if (!movementPressed && isWalking)
         {
@@ -75,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool(isRunningHash, false);
         }
     }
+    //karakter Haraketi
     void HandleRotation()
     {
         Vector3 currentpos = transform.position;
