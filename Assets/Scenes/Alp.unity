@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 9653a953305462b4482d29f1aa0e7061,
+  m_Actions: {fileID: -944628639613478452, guid: 3d591ca5de4eece4cb3a67e4854b3306,
     type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: SutunBulmaca
+  m_DefaultActionMap: PuzzleMove
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &626391679
@@ -1359,6 +1359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2349475bffa75834da4dd30498278323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cube: {fileID: 338231740}
+  rotationDuration: 0.5
 --- !u!4 &1583079231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a1bb60ccd4dfa2248b67c8381c620e43,

@@ -62,6 +62,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""axis"",
+                    ""type"": ""Value"",
+                    ""id"": ""357de21d-ea92-4f41-9012-6e97e6686c95"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,100 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Etkilesim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""a55e4717-7dda-47bb-8734-6f34f4d10fe0"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""axis"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""9997699a-6a9a-455d-8919-c12629159b41"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""axis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""c3d6406c-35ff-461f-a897-79ee788be20d"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""axis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""puzle"",
+            ""id"": ""bc37edbe-3f61-4580-8717-123a10dba55f"",
+            ""actions"": [
+                {
+                    ""name"": ""action"",
+                    ""type"": ""Value"",
+                    ""id"": ""643ea11f-c323-4a3f-951c-680821b484dc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""85739b56-d87c-4773-aa8b-9878d480a64b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""f1858400-347b-44f2-813e-3ffc89a2a7da"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""action"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""dcc0c78c-7aac-41ef-a307-3a0fa91eb948"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""f7b7eb3c-8403-435f-a6b4-8c90ad78e416"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -164,6 +267,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_PlayerMovement_run = m_PlayerMovement.FindAction("run", throwIfNotFound: true);
         m_PlayerMovement_Attack = m_PlayerMovement.FindAction("Attack", throwIfNotFound: true);
         m_PlayerMovement_Etkilesim = m_PlayerMovement.FindAction("Etkilesim", throwIfNotFound: true);
+        m_PlayerMovement_axis = m_PlayerMovement.FindAction("axis", throwIfNotFound: true);
+        // puzle
+        m_puzle = asset.FindActionMap("puzle", throwIfNotFound: true);
+        m_puzle_action = m_puzle.FindAction("action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +336,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMovement_run;
     private readonly InputAction m_PlayerMovement_Attack;
     private readonly InputAction m_PlayerMovement_Etkilesim;
+    private readonly InputAction m_PlayerMovement_axis;
     public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -237,6 +345,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @run => m_Wrapper.m_PlayerMovement_run;
         public InputAction @Attack => m_Wrapper.m_PlayerMovement_Attack;
         public InputAction @Etkilesim => m_Wrapper.m_PlayerMovement_Etkilesim;
+        public InputAction @axis => m_Wrapper.m_PlayerMovement_axis;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +367,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Etkilesim.started += instance.OnEtkilesim;
             @Etkilesim.performed += instance.OnEtkilesim;
             @Etkilesim.canceled += instance.OnEtkilesim;
+            @axis.started += instance.OnAxis;
+            @axis.performed += instance.OnAxis;
+            @axis.canceled += instance.OnAxis;
         }
 
         private void UnregisterCallbacks(IPlayerMovementActions instance)
@@ -274,6 +386,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Etkilesim.started -= instance.OnEtkilesim;
             @Etkilesim.performed -= instance.OnEtkilesim;
             @Etkilesim.canceled -= instance.OnEtkilesim;
+            @axis.started -= instance.OnAxis;
+            @axis.performed -= instance.OnAxis;
+            @axis.canceled -= instance.OnAxis;
         }
 
         public void RemoveCallbacks(IPlayerMovementActions instance)
@@ -291,11 +406,62 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+
+    // puzle
+    private readonly InputActionMap m_puzle;
+    private List<IPuzleActions> m_PuzleActionsCallbackInterfaces = new List<IPuzleActions>();
+    private readonly InputAction m_puzle_action;
+    public struct PuzleActions
+    {
+        private @PlayerInput m_Wrapper;
+        public PuzleActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @action => m_Wrapper.m_puzle_action;
+        public InputActionMap Get() { return m_Wrapper.m_puzle; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PuzleActions set) { return set.Get(); }
+        public void AddCallbacks(IPuzleActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PuzleActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PuzleActionsCallbackInterfaces.Add(instance);
+            @action.started += instance.OnAction;
+            @action.performed += instance.OnAction;
+            @action.canceled += instance.OnAction;
+        }
+
+        private void UnregisterCallbacks(IPuzleActions instance)
+        {
+            @action.started -= instance.OnAction;
+            @action.performed -= instance.OnAction;
+            @action.canceled -= instance.OnAction;
+        }
+
+        public void RemoveCallbacks(IPuzleActions instance)
+        {
+            if (m_Wrapper.m_PuzleActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPuzleActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PuzleActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PuzleActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PuzleActions @puzle => new PuzleActions(this);
     public interface IPlayerMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnEtkilesim(InputAction.CallbackContext context);
+        void OnAxis(InputAction.CallbackContext context);
+    }
+    public interface IPuzleActions
+    {
+        void OnAction(InputAction.CallbackContext context);
     }
 }

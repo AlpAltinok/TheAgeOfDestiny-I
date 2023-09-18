@@ -1,73 +1,71 @@
 {
-    "name": "BulmacaInput",
+    "name": "PuzzleInput",
     "maps": [
         {
-            "name": "SutunBulmaca",
-            "id": "cea766d4-99cc-4d24-8490-eed1895715b4",
+            "name": "PuzzleMove",
+            "id": "fd0764ee-bd3d-4a66-85fd-142b141074ac",
             "actions": [
                 {
-                    "name": "Rotasyon",
+                    "name": "Move",
                     "type": "Value",
-                    "id": "b0fb7a20-3a13-48a1-9be7-7f2ba0f50efc",
-                    "expectedControlType": "Button",
+                    "id": "91a10053-0c79-4ba1-bd03-0161b48fa3b1",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "ec72def4-324a-4e00-be9c-7b5a5086224e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "1D Axis",
-                    "id": "2a43d4d5-51d6-4ea6-b79a-2d22ac0ad8d6",
+                    "id": "c98344e6-aab8-411a-9fb8-9c43043dbd12",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Rotasyon",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "negative",
-                    "id": "3548626c-a864-40b8-a3d7-6dbe37b6e772",
+                    "id": "fab90c35-1c08-4aca-ac8c-7c712b084e26",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Rotasyon",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "positive",
-                    "id": "30ffe988-83eb-4ce6-8ea6-84798bd0e0ae",
+                    "id": "cc4bae6d-f812-43ea-97d4-4788abc545b5",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Rotasyon",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "d0c90869-ca60-432e-a6be-49e749db7a06",
-                    "path": "<Keyboard>/a",
+                    "id": "b686a47a-e3b4-4758-b508-273e1844e4d9",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Rotasyon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "698bc328-852f-409c-a72d-2697ae398422",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Rotasyon",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
