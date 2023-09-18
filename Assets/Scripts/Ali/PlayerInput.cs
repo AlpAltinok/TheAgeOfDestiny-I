@@ -53,6 +53,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Etkilesim"",
+                    ""type"": ""Button"",
+                    ""id"": ""93007070-b32a-432a-b916-4558bdace83e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""174b0e1a-bd3d-47d8-bf50-1e9db37c387a"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Etkilesim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +163,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_PlayerMovement_Move = m_PlayerMovement.FindAction("Move", throwIfNotFound: true);
         m_PlayerMovement_run = m_PlayerMovement.FindAction("run", throwIfNotFound: true);
         m_PlayerMovement_Attack = m_PlayerMovement.FindAction("Attack", throwIfNotFound: true);
+        m_PlayerMovement_Etkilesim = m_PlayerMovement.FindAction("Etkilesim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +228,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMovement_Move;
     private readonly InputAction m_PlayerMovement_run;
     private readonly InputAction m_PlayerMovement_Attack;
+    private readonly InputAction m_PlayerMovement_Etkilesim;
     public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -214,6 +236,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_PlayerMovement_Move;
         public InputAction @run => m_Wrapper.m_PlayerMovement_run;
         public InputAction @Attack => m_Wrapper.m_PlayerMovement_Attack;
+        public InputAction @Etkilesim => m_Wrapper.m_PlayerMovement_Etkilesim;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +255,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @Etkilesim.started += instance.OnEtkilesim;
+            @Etkilesim.performed += instance.OnEtkilesim;
+            @Etkilesim.canceled += instance.OnEtkilesim;
         }
 
         private void UnregisterCallbacks(IPlayerMovementActions instance)
@@ -245,6 +271,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @Etkilesim.started -= instance.OnEtkilesim;
+            @Etkilesim.performed -= instance.OnEtkilesim;
+            @Etkilesim.canceled -= instance.OnEtkilesim;
         }
 
         public void RemoveCallbacks(IPlayerMovementActions instance)
@@ -267,5 +296,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnEtkilesim(InputAction.CallbackContext context);
     }
 }

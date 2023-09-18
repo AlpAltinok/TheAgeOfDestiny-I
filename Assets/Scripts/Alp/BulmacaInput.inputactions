@@ -1,0 +1,78 @@
+{
+    "name": "BulmacaInput",
+    "maps": [
+        {
+            "name": "SutunBulmaca",
+            "id": "cea766d4-99cc-4d24-8490-eed1895715b4",
+            "actions": [
+                {
+                    "name": "Rotasyon",
+                    "type": "Value",
+                    "id": "b0fb7a20-3a13-48a1-9be7-7f2ba0f50efc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "2a43d4d5-51d6-4ea6-b79a-2d22ac0ad8d6",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotasyon",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "3548626c-a864-40b8-a3d7-6dbe37b6e772",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotasyon",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "30ffe988-83eb-4ce6-8ea6-84798bd0e0ae",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotasyon",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d0c90869-ca60-432e-a6be-49e749db7a06",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotasyon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "698bc328-852f-409c-a72d-2697ae398422",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotasyon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

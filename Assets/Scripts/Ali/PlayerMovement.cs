@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
     int isRunningHash;
 
     PlayerInput input;
-    // Start is called before the first frame update
+
+    public static bool etkilesim;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     //input system get data
     private void Awake()
     {
+
         input = new PlayerInput();
         input.PlayerMovement.Move.performed += ctx =>
         {
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
             movementPressed = false;
 
         };
+        input.PlayerMovement.Etkilesim.started += ctx => OnEtkilesim();
     }
 
     void Attack()
@@ -100,10 +103,16 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         input.PlayerMovement.Enable();
+        
     }
-    private void OnDisable()
+    public void OnDisable()
     {
         input.PlayerMovement.Disable();
 
+    }
+    public void OnEtkilesim()
+    {
+        etkilesim = true;
+        input.PlayerMovement.Disable();
     }
 }

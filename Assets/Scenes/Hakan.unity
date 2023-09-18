@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -236,7 +236,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &361965670
 PrefabInstance:
@@ -248,7 +248,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: be3dd94632d37d74287a4a1b2587da7f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be3dd94632d37d74287a4a1b2587da7f,
         type: 3}
@@ -482,7 +482,7 @@ Transform:
   m_Children:
   - {fileID: 411924214}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2077094542
 GameObject:
@@ -594,13 +594,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077094542}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.13662808, y: 0.6853109, z: -0.1332288, w: -0.7028029}
+  m_LocalPosition: {x: 1946.5392, y: 21.628517, z: 1741.9044}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6981215239989681481
 PrefabInstance:
@@ -612,7 +612,7 @@ PrefabInstance:
     - target: {fileID: 4929627905228539358, guid: 02e7f56e1bc0f1a4b8fb956d3abe1037,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4929627905228539358, guid: 02e7f56e1bc0f1a4b8fb956d3abe1037,
         type: 3}
@@ -691,7 +691,7 @@ PrefabInstance:
     - target: {fileID: 7912221185330723304, guid: fc38e329845e19e4284f37040ec9ce51,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7912221185330723304, guid: fc38e329845e19e4284f37040ec9ce51,
         type: 3}
