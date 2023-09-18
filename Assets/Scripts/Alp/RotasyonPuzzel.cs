@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Cinemachine;
@@ -8,28 +6,50 @@ using UnityEngine.InputSystem;
 
 public class RotasyonPuzzel : MonoBehaviour
 {
-    public Transform player;
+    [SerializeField]
+   Transform player;
    
     public float interactionDistance = 6f;
     public float rotationAmount = 5f;
     public float rotationDuration = 0.5f;
     public CinemachineVirtualCamera virtualCamera;
     public CinemachineVirtualCamera followVirtualCamera;
-    private bool interacting = false;
-    BulmacaInput input;
 
+    private bool interacting = false;
+    PuzzleInput input;
+
+   
+
+    float axis;
     private void Awake()
     {
-     // input.SutunBulmaca.Rotasyon.performed += 
+        input=new PuzzleInput();
+
+        input.PuzzleMove.Exit.started += ctx => ExitCode();
+
+        input.PuzzleMove.Move.performed += ctx => 
+        {
+            axis=ctx.ReadValue<float>();
+            Debug.Log("axþs " + axis);
+
+        };
+        input.PuzzleMove.Move.canceled += ctx =>
+        {
+            axis = 0;
+        };
+
+
     }
     private void Start()
     {
       
     }
-    public void RotasyonAktif() { 
-    
-    
-    
+   void ExitCode()
+    {
+        followVirtualCamera.gameObject.SetActive(interacting);
+        virtualCamera.gameObject.SetActive(!interacting);
+        PlayerMovement.etki = false;
+        PlayerMovement.etkilesim = false;
     }
     void Update()
     {
@@ -41,9 +61,12 @@ public class RotasyonPuzzel : MonoBehaviour
             PlayerMovement.etkilesim = !interacting;
             followVirtualCamera.gameObject.SetActive(!interacting);
             virtualCamera.gameObject.SetActive(interacting);
-            Debug.Log("calýstý1");
+           
+          
         }
 
+
+      
         if (interacting)
         {
             /*  if (Input.GetKeyDown(KeyCode.A))
@@ -56,20 +79,19 @@ public class RotasyonPuzzel : MonoBehaviour
               }*/
 
             Debug.Log("calýstý2");
-
-
+            transform.Rotate(new Vector3(0, axis) * Time.deltaTime * 10f);
         }
     }
-    private void OnRotasyonSol()
+  
+    private void OnEnable()
     {
-        transform.DORotate(new Vector3(0, -rotationAmount, 0), rotationDuration, RotateMode.LocalAxisAdd).SetEase(Ease.Linear);
-
+        input.PuzzleMove.Enable();
     }
-    private void OnRotasyonSag()
+    private void OnDisable()
     {
-        transform.DORotate(new Vector3(0, rotationAmount, 0), rotationDuration, RotateMode.LocalAxisAdd).SetEase(Ease.Linear);
-
+            input.PuzzleMove.Disable();
     }
+
 
 }
 

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,18 +11,24 @@ public class PlayerMovement : MonoBehaviour
     int isWalkingHash;
     int isRunningHash;
 
+    //PuzzleInput input1;
+
     PlayerInput input;
 
-    public static bool etkilesim;
+    public static bool etkilesim = false;
+
     void Start()
     {
-        animator = GetComponent<Animator>();
 
+        animator = GetComponent<Animator>();
 
         isWalkingHash = Animator.StringToHash("iswalking");
         isRunningHash = Animator.StringToHash("isrunning");
 
     }
+
+    public float rotationDuration = .5f;
+
 
     Vector2 currentMovement;
     bool movementPressed;
@@ -30,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     //input system get data
     private void Awake()
     {
-
+      
         input = new PlayerInput();
         input.PlayerMovement.Move.performed += ctx =>
         {
@@ -40,12 +47,39 @@ public class PlayerMovement : MonoBehaviour
 
         input.PlayerMovement.run.performed += ctx => runPressed = ctx.ReadValueAsButton();
         input.PlayerMovement.Attack.started += ctx => Attack();
+
+
         input.PlayerMovement.Move.canceled += ctx =>
         {
             movementPressed = false;
 
         };
-        input.PlayerMovement.Etkilesim.started += ctx => OnEtkilesim();
+        input.PlayerMovement.Etkilesim.started += ctx =>
+        {
+
+            OnEtkilesim();
+
+        };
+    }
+   public static bool etki;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("etkilesim"))
+        {
+            etki = true;
+            Debug.Log("triggerebter");
+        }
+       
+        
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "etkilesim")
+        {
+            etki = false;
+
+        }
+
     }
 
     void Attack()
@@ -56,6 +90,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("etki" + etki);
+
+        // RotasyonAktif();
         HandleMovement();
         HandleRotation();
     }
@@ -69,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         if (movementPressed && !isWalking)
         {
             animator.SetBool(isWalkingHash, true);
-         
+
         }
         if (!movementPressed && isWalking)
         {
@@ -103,7 +140,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         input.PlayerMovement.Enable();
-        
+
+
     }
     public void OnDisable()
     {
@@ -112,7 +150,18 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnEtkilesim()
     {
-        etkilesim = true;
-        input.PlayerMovement.Disable();
+        if (etki)
+        {
+            etkilesim = true;
+
+            input.PlayerMovement.Disable();
+        }
+        else
+        {
+            etkilesim = false;
+            input.PlayerMovement.Enable();
+        }
+
+
     }
 }
