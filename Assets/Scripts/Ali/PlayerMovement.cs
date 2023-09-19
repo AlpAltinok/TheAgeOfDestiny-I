@@ -2,11 +2,11 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 
 public class PlayerMovement : MonoBehaviour
 {
-    Animator animator;
+  /*  Animator animator;
 
     int isWalkingHash;
     int isRunningHash;
@@ -163,5 +163,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-    }
+    }*/
 }
+  
