@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -190,6 +190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal03
       objectReference: {fileID: 0}
+    - target: {fileID: 5702224371766026084, guid: 02e7f56e1bc0f1a4b8fb956d3abe1037,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02e7f56e1bc0f1a4b8fb956d3abe1037, type: 3}
 --- !u!1001 &265233283
@@ -199,6 +204,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1454431493, guid: dc48abf85e84ba94d9409530898d19c8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3994297060984742442, guid: dc48abf85e84ba94d9409530898d19c8,
         type: 3}
       propertyPath: m_RootOrder
@@ -259,10 +268,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal01
       objectReference: {fileID: 0}
+    - target: {fileID: 6276406147604752880, guid: dc48abf85e84ba94d9409530898d19c8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8420550359874619938, guid: dc48abf85e84ba94d9409530898d19c8,
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420550359874619940, guid: dc48abf85e84ba94d9409530898d19c8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc48abf85e84ba94d9409530898d19c8, type: 3}
@@ -412,8 +431,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418056253}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.101707265, y: 0.049517974, z: -0.0050729592, w: -0.9935683}
+  m_LocalPosition: {x: 1953.8026, y: 15.481928, z: 1643.4991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -584,6 +603,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Portal02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387604968314069842, guid: fc38e329845e19e4284f37040ec9ce51,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7658197727980681815, guid: fc38e329845e19e4284f37040ec9ce51,
         type: 3}
