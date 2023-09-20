@@ -23,8 +23,11 @@ public class PlayerMovement : MonoBehaviour
     bool movementPressed;
     bool runPressed;
 
+    public static bool Etkilesim;
+
     private void Start()
     {
+        Etkilesim = true;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         isWalkingHash = Animator.StringToHash("iswalking");
@@ -65,34 +68,37 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleMovement()
     {
-        xDirection = Input.GetAxis("Horizontal");
-        zDirection = Input.GetAxis("Vertical");
-
-
-        MoveDirection = new Vector3(xDirection, 0, zDirection);
-        transform.position += MoveDirection * moveSpeed * Time.deltaTime;
-
-        bool isRunning = animator.GetBool(isRunningHash);
-        bool isWalking = animator.GetBool(isWalkingHash);
-
-        if (movementPressed && !isWalking)
+        if (Etkilesim == true)
         {
-            animator.SetBool(isWalkingHash, true);
+            xDirection = Input.GetAxis("Horizontal");
+            zDirection = Input.GetAxis("Vertical");
 
-        }
-        if (!movementPressed && isWalking)
-        {
-            animator.SetBool(isWalkingHash, false);
-        }
 
-        if ((movementPressed && runPressed) && !isRunning)
-        {
-            animator.SetBool(isRunningHash, true);
-        }
+            MoveDirection = new Vector3(xDirection, 0, zDirection);
+            transform.position += MoveDirection * moveSpeed * Time.deltaTime;
 
-        if ((!movementPressed || !runPressed) && isRunning)
-        {
-            animator.SetBool(isRunningHash, false);
+            bool isRunning = animator.GetBool(isRunningHash);
+            bool isWalking = animator.GetBool(isWalkingHash);
+
+            if (movementPressed && !isWalking)
+            {
+                animator.SetBool(isWalkingHash, true);
+
+            }
+            if (!movementPressed && isWalking)
+            {
+                animator.SetBool(isWalkingHash, false);
+            }
+
+            if ((movementPressed && runPressed) && !isRunning)
+            {
+                animator.SetBool(isRunningHash, true);
+            }
+
+            if ((!movementPressed || !runPressed) && isRunning)
+            {
+                animator.SetBool(isRunningHash, false);
+            }
         }
 
     }
