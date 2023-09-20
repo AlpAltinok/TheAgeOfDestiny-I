@@ -2,103 +2,75 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-  /*  Animator animator;
+    Animator animator;
+    Rigidbody rb;
+    [SerializeField]
+    float jumpForce;
+
+    Vector3 MoveDirection;
+    [SerializeField]
+    float moveSpeed;
+    float xDirection;
+    float zDirection;
+
 
     int isWalkingHash;
     int isRunningHash;
-
-    //PuzzleInput input1;
-
-    PlayerInput input;
-
-    public static bool etkilesim = false;
-
-    void Start()
-    {
-
-        animator = GetComponent<Animator>();
-
-        isWalkingHash = Animator.StringToHash("iswalking");
-        isRunningHash = Animator.StringToHash("isrunning");
-
-    }
-
-    public float rotationDuration = .5f;
-
-
-    Vector2 currentMovement;
     bool movementPressed;
     bool runPressed;
 
-    //input system get data
-    private void Awake()
+    private void Start()
     {
-      
-        input = new PlayerInput();
-        input.PlayerMovement.Move.performed += ctx =>
-        {
-            currentMovement = ctx.ReadValue<Vector2>();
-            movementPressed = currentMovement.x != 0 || currentMovement.y != 0;
-        };
-
-        input.PlayerMovement.run.performed += ctx => runPressed = ctx.ReadValueAsButton();
-        input.PlayerMovement.Attack.started += ctx => Attack();
-
-
-        input.PlayerMovement.Move.canceled += ctx =>
-        {
-            movementPressed = false;
-
-        };
-        input.PlayerMovement.Etkilesim.started += ctx =>
-        {
-
-            OnEtkilesim();
-
-        };
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+        isWalkingHash = Animator.StringToHash("iswalking");
+        isRunningHash = Animator.StringToHash("isrunning");
     }
-   public static bool etki;
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (other.gameObject.CompareTag("etkilesim"))
-        {
-            etki = true;
-            Debug.Log("triggerebter");
-        }
-       
-        
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "etkilesim")
-        {
-            etki = false;
-
-        }
-
-    }
-
-    void Attack()
-    {
-        animator.SetTrigger("isattacking");
-
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log("etki" + etki);
-
-        // RotasyonAktif();
+        movementPressed = xDirection != 0 || zDirection != 0;
         HandleMovement();
         HandleRotation();
+        KeyDown();
+
     }
-    //karakter Animasyonu
+    void KeyDown()
+    {
+
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            runPressed = true;
+        }else runPressed = false;
+
+        if (Input.GetMouseButton(0))
+        {
+            animator.SetTrigger("isattacking");
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(new Vector3(0, 5f, 0)*jumpForce,ForceMode.VelocityChange);
+            animator.SetTrigger("isjumping");
+        }
+    }
+
+    private void Awake()
+    {
+
+
+    }
+
     void HandleMovement()
     {
+        xDirection = Input.GetAxis("Horizontal");
+        zDirection = Input.GetAxis("Vertical");
+
+
+        MoveDirection = new Vector3(xDirection, 0, zDirection);
+        transform.position += MoveDirection * moveSpeed * Time.deltaTime;
 
         bool isRunning = animator.GetBool(isRunningHash);
         bool isWalking = animator.GetBool(isWalkingHash);
@@ -122,47 +94,19 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool(isRunningHash, false);
         }
+
     }
-    //karakter Haraketi
     void HandleRotation()
     {
         Vector3 currentpos = transform.position;
-
-        Vector3 newpos = new Vector3(currentMovement.x, 0, currentMovement.y);
+        Vector3 newpos = new Vector3(xDirection, 0, zDirection);
         Vector3 positionlookat = currentpos + newpos;
-
         Quaternion targetRotation = Quaternion.LookRotation(positionlookat - transform.position);
 
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
 
     }
-    private void OnEnable()
-    {
-        input.PlayerMovement.Enable();
 
-
-    }
-    public void OnDisable()
-    {
-        input.PlayerMovement.Disable();
-
-    }
-    public void OnEtkilesim()
-    {
-        if (etki)
-        {
-            etkilesim = true;
-
-            input.PlayerMovement.Disable();
-        }
-        else
-        {
-            etkilesim = false;
-            input.PlayerMovement.Enable();
-        }
-
-
-    }*/
+    
 }
-  
