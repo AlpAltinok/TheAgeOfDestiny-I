@@ -87,7 +87,7 @@ public class ScourgerBossScript : MonoBehaviour
         GameObject slashObj = Instantiate(slashPrefab, transform.position + Vector3.up * 5f, Quaternion.identity);
         Vector3 lookPos = playerTarget.position - slashObj.transform.position;
         lookPos.y = 0;
-        Quaternion lookRot = Quaternion.LookRotation(-lookPos);
+        Quaternion lookRot = Quaternion.LookRotation(lookPos);
         slashObj.transform.rotation = lookRot;
         slashObj.GetComponent<Rigidbody>().velocity = Vector3.Normalize(lookPos) * slashSpeed;
         Destroy(slashObj, 5f);
