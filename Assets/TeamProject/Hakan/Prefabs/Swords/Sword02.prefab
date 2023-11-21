@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4879481852165626056
+--- !u!1 &8905258099595041171
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5259278888654881394}
-  - component: {fileID: 9174797664170233303}
-  - component: {fileID: 6392748158147082525}
-  - component: {fileID: 3523030029148138781}
-  - component: {fileID: 6871232942029440068}
+  - component: {fileID: 8132944177420305193}
+  - component: {fileID: 5148140176449932428}
+  - component: {fileID: 6959514424829278278}
+  - component: {fileID: 632442172648254534}
+  - component: {fileID: 7456050169078138143}
   m_Layer: 0
-  m_Name: Sword02_Mesh
+  m_Name: Sword02Combo_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5259278888654881394
+--- !u!4 &8132944177420305193
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4879481852165626056}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_GameObject: {fileID: 8905258099595041171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1377205189273798790}
+  m_Father: {fileID: 3116037091951708637}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!33 &9174797664170233303
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5148140176449932428
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4879481852165626056}
-  m_Mesh: {fileID: -2759957347080997078, guid: b004044c43ce4234db298d7a17591878, type: 3}
---- !u!23 &6392748158147082525
+  m_GameObject: {fileID: 8905258099595041171}
+  m_Mesh: {fileID: -2759957347080997078, guid: 0b4adaaccb44fdf4cbe23560b2f21098, type: 3}
+--- !u!23 &6959514424829278278
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4879481852165626056}
+  m_GameObject: {fileID: 8905258099595041171}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,27 +85,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3523030029148138781
+--- !u!114 &632442172648254534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4879481852165626056}
+  m_GameObject: {fileID: 8905258099595041171}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a31609eea90cbfe428c28353849e6aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Effect: {fileID: 9018524500087288736, guid: aa0bf3ee29afcdd4f98b0683dcf9c886, type: 3}
---- !u!95 &6871232942029440068
+  spamFile: {fileID: 0}
+  effectSkill:
+  - {fileID: 6202930518854083364, guid: aa0bf3ee29afcdd4f98b0683dcf9c886, type: 3}
+  - {fileID: 1686134988313702089, guid: 55a143d76673dca4d81ef140a6562923, type: 3}
+  indexSkill: 1
+  comboTime01: 0.1
+  comboTime02: 0.3
+  comboTime03: 0.6
+--- !u!95 &7456050169078138143
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4879481852165626056}
+  m_GameObject: {fileID: 8905258099595041171}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 07b31a28113ac0c4e9b83155ea6f17d6, type: 2}
@@ -118,7 +125,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!1 &5140332127651705075
+--- !u!1 &9184127436993950120
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,7 +133,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1377205189273798790}
+  - component: {fileID: 3116037091951708637}
   m_Layer: 0
   m_Name: Sword02
   m_TagString: Untagged
@@ -134,19 +141,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1377205189273798790
+--- !u!4 &3116037091951708637
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5140332127651705075}
+  m_GameObject: {fileID: 9184127436993950120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1887.3328, y: 4.5516434, z: 1805.4736}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5259278888654881394}
+  - {fileID: 8132944177420305193}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
