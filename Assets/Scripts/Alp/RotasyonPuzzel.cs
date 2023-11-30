@@ -35,7 +35,7 @@ public class RotasyonPuzzel : MonoBehaviour
         {
             interacting = !interacting;
             //player.GetComponent<KarakterKontrol>().canMove = !interacting;
-            KarakterMove.Move = !interacting;
+          
             PlayerMovement.Etkilesim = !interacting;
             followVirtualCamera.gameObject.SetActive(!interacting);
             virtualCamera.gameObject.SetActive(interacting);
