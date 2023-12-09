@@ -392,7 +392,7 @@ Material:
     - _PixelateFade: 1
     - _PixelatePixelDensity: 16
     - _PixelatePixelsPerUnit: 100
-    - _PixelsPerUnit: 5
+    - _PixelsPerUnit: 1
     - _PoisonDensity: 3
     - _PoisonFade: 1
     - _PoisonNoiseBrightness: 2

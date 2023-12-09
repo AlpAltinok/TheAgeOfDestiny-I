@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
     public PlayerSaveData CurrentActiveSave;
+    public CombatStats MyStats;
 
     private void Awake()
     {
@@ -18,6 +19,11 @@ public class GameManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this);
+    }
+
+    public void SetMyStats(CombatStats _MyStats)
+    {
+        MyStats = _MyStats;
     }
 
     private void Start()
@@ -42,7 +48,8 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            LoadSavedGame("TestNewSave", 1701407785);
+            //LoadSavedGame("TestNewSave", 1701407785);
+            LoadSavedGame("KorayTest", 0);
         }
     }
 
@@ -111,6 +118,8 @@ public class GameManager : MonoBehaviour
         savedata.Gold = 0;
         savedata.CreatedUID = createdUID;
         savedata.LastSave = unixTimestamp;
+        savedata.Equipments = CurrentActiveSave.Equipments;
+        savedata.Inventory = CurrentActiveSave.Inventory;
         CurrentActiveSave = savedata;
 
         string jsonString = JsonUtility.ToJson(savedata); // this will give you the json (i.e serialize the data)

@@ -52,6 +52,7 @@ public class Item
     }
 }
 
+[System.Serializable]
 public class Stat
 {
     public int id;
@@ -72,40 +73,75 @@ public class Stat
 
 public enum eStat
 {
-    None,
-    PhysicalMinDamage,
-    PhysicalMaxDamage,
-    MagicalMinDamage,
-    MagicalMaxDamage,
-    MaxHealth,
-    MaxMana,
-    PhysicalDefence,
-    MagicalDefence,
-    ShotDistance,
-    Heal,
+    None, 
+    Damage, //+ hasar + bazli
+    DamgePercent, //% hasar % bazli
+    MaxHealth, //+ mana % bazli
+    MaxHealthPercent, //% hp %bazli
+    MaxMana, //+ mana + bazli
+    MaxManaPercent, //% mana % bazli
+    PhysicalDefence, //+ Fiziksel defans artisi + bazli
+    PhysicalDefencePercent, //% Fiziksel defans artisi % bazli
+    MagicalDefence, //+ Sihirli defans artisi + bazli
+    MagicalDefencePercent, //% Sihirli defans artisi % bazli
+    HealAmount, //+ Canavar oldurmelerden ekstra can kazanimi + bazli
+    HealAmountPercent, //% Canavar oldurmelerden ekstra can kazanimi % bazli
+    CritDamage, //% critical vuruslarin vuracagi fazladan hasar miktari
+    CritRate, //% critical vurus sansi
+    Stamina, //+ Kosma, ve savasma enerjisi artisi +
+    StaminaPercent, //% Kosma, ve savasma enerjisi artisi %
+    Accuracy, //% Dodge olabilecek vuruslari kirma sansi
+    Evasion, //% Vuruslari dodgelama sansi
+    AttackSpeed, //% Saldiri hizi
+    //LifeSteal, //% oldurmelerden, hpnin % oranli geri kazanimi
+    //ManaSteal, //% oldurmelerden, mananin % oranli geri kazanimi
+    ShotDistance, //+ Metre bazli, okun ulasabilecegi maksimum menzili arttiran bir stat.
+    HealthRegeneration, //Her 8 saniyede bir geri kazanilan hp miktari +olarak
+    HealthRegenerationPercent, //Her 8 saniyede bir geri kazanilan hp miktari %olarak
+    ManaRegeneration, //Her 8 saniyede bir geri kazanilan mana miktari +olarak
+    ManaRegenerationPercent, //Her 8 saniyede bir geri kazanilan mana miktari %olarak
+    BurnChance, //% Dusmanin her saniye bir miktar yanma hasari almasi icin sans
+    FreezeChance, //% Dusmani dondurma sansi
+    PoisonChance, //% Dusmanin her 3 saniyede bir yanamya oranla daha yuksek bir zehir hasari almasi icin sans
+    BurnRessist,
+    FreezeRessist,
+    PoisonRessist,
+    GoldFind, //% extra gold
+    Length, //bunun her zaman son element oldugundan emin olun, bu bize hizli yoldan ekipmanlarin kac cesit oldugu bilgisini vericek.
 }
 
 public enum eItemType
 {
     None,
     MainWeapon,
-    SecondaryWeapon, //g
-    DoubleWeapon, //g
-    Armour, //Govde, Kask, Bileklik, Pantolon, Ayakkabi
-    Rune, 
-    Jewelry, //Kolye, Bilezik, Kupe, Kemer, Yuzuk, Rune
+    Chest,
+    Helmet,
+    wristlet,
+    Pant,
+    Boot,
+    Necklace,
+    Bracelet,
+    Earring,
+    Belt,
+    Ring,
     Resource, //Craft yok,
     Potion, //Pot yok,
 }
 
 public enum Equipment 
-{ 
+{
+    None,
     MainWeapon,
-    SecondaryWeapon,
     Chest,
+    Helmet,
+    wristlet,
     Pant,
-    Jewelry1,
-    Jewelry2,
+    Boot,
+    Necklace,
+    Bracelet,
+    Earring,
+    Belt,
+    Ring,
     Length, //bunun her zaman son element oldugundan emin olun, bu bize hizli yoldan ekipmanlarin kac cesit oldugu bilgisini vericek.
 }
 

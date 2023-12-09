@@ -45,9 +45,6 @@ public class ItemDatabase : MonoBehaviour
         CreateWeapons();
         CreateArmours();
         CreateJewelries();
-        CreateRunes();
-        CreateResources();
-        CreatePotions();
     }
 
     void CreateWeapons()
@@ -55,24 +52,21 @@ public class ItemDatabase : MonoBehaviour
         Item Weapon1 = new Item(1001,
             new List<Stat>
             {
-                new Stat((int)eStat.PhysicalMinDamage, 20),
-                new Stat((int)eStat.PhysicalMaxDamage, 35)
+                new Stat((int)eStat.Damage, 25),
             },
             new List<Stat>(), (int)eItemType.MainWeapon, 0, 1, 40, 10, 10);
 
         Item Weapon2 = new Item(1002,
             new List<Stat>
             {
-                new Stat((int)eStat.PhysicalMinDamage, 29),
-                new Stat((int)eStat.PhysicalMaxDamage, 43)
+                new Stat((int)eStat.Damage, 35),
             },
             new List<Stat>(), (int)eItemType.MainWeapon, 0, 1, 100, 30, 15);
 
         Item Weapon3 = new Item(1003,
             new List<Stat>
             {
-                new Stat((int)eStat.PhysicalMinDamage, 38),
-                new Stat((int)eStat.PhysicalMaxDamage, 55)
+                new Stat((int)eStat.Damage, 45),
             },
             new List<Stat>(), (int)eItemType.MainWeapon, 0, 1, 180, 60, 20);
 
@@ -86,107 +80,96 @@ public class ItemDatabase : MonoBehaviour
         Item Armour1 = new Item(2001,
             new List<Stat>
             {
+                new Stat((int)eStat.PhysicalDefence, 30),
+                new Stat((int)eStat.MagicalDefence, 25)
+            },
+            new List<Stat>(), (int)eItemType.Chest, 0, 1, 20, 5, 15);
+
+        Item Pant1 = new Item(3001,
+            new List<Stat>
+            {
+                new Stat((int)eStat.PhysicalDefence, 25),
+                new Stat((int)eStat.MagicalDefence, 22)
+            },
+            new List<Stat>(), (int)eItemType.Pant, 0, 1, 60, 15, 13);
+
+        Item Helmet1 = new Item(4001,
+            new List<Stat>
+            {
+                new Stat((int)eStat.PhysicalDefence, 17),
+                new Stat((int)eStat.MagicalDefence, 14)
+            },
+            new List<Stat>(), (int)eItemType.Helmet, 0, 1, 110, 25, 11);
+
+        Item Wristlet1 = new Item(5001,
+            new List<Stat>
+            {
                 new Stat((int)eStat.PhysicalDefence, 12),
                 new Stat((int)eStat.MagicalDefence, 7)
             },
-            new List<Stat>(), (int)eItemType.Armour, 0, 1, 20, 5, 10);
+            new List<Stat>(), (int)eItemType.wristlet, 0, 1, 110, 25, 8);
 
-        Item Armour2 = new Item(2002,
+        Item Boot1 = new Item(6001,
             new List<Stat>
             {
-                new Stat((int)eStat.PhysicalDefence, 19),
-                new Stat((int)eStat.MagicalDefence, 12)
+                new Stat((int)eStat.PhysicalDefence, 10),
+                new Stat((int)eStat.MagicalDefence, 5)
             },
-            new List<Stat>(), (int)eItemType.Armour, 0, 1, 60, 15, 15);
-
-        Item Armour3 = new Item(2003,
-            new List<Stat>
-            {
-                new Stat((int)eStat.PhysicalDefence, 29),
-                new Stat((int)eStat.MagicalDefence, 18)
-            },
-            new List<Stat>(), (int)eItemType.Armour, 0, 1, 110, 25, 20);
+            new List<Stat>(), (int)eItemType.Boot, 0, 1, 110, 25, 8);
 
         items.Add(Armour1);
-        items.Add(Armour2);
-        items.Add(Armour3);
+        items.Add(Pant1);
+        items.Add(Helmet1);
+        items.Add(Wristlet1);
+        items.Add(Boot1);
     }
 
     void CreateJewelries()
     {
-        Item Jewelry1 = new Item(3001,
-            new List<Stat>
-            {
-                new Stat((int)eStat.MaxHealth, 40),
-                new Stat((int)eStat.MaxMana, 15)
-            },
-            new List<Stat>(), (int)eItemType.Jewelry, 0, 1, 120, 50, 10);
-
-        Item Jewelry2 = new Item(3002,
+        Item Necklace1 = new Item(7001,
             new List<Stat>
             {
                 new Stat((int)eStat.MaxHealth, 60),
-                new Stat((int)eStat.MaxMana, 25)
+                new Stat((int)eStat.MaxMana, 50)
             },
-            new List<Stat>(), (int)eItemType.Jewelry, 0, 1, 210, 100, 15);
+            new List<Stat>(), (int)eItemType.Necklace, 0, 1, 340, 50, 15);
 
-        Item Jewelry3 = new Item(3003,
+        Item Earring1 = new Item(8001,
             new List<Stat>
             {
-                new Stat((int)eStat.MaxHealth, 90),
-                new Stat((int)eStat.MaxMana, 40)
+                new Stat((int)eStat.MaxHealth, 40),
+                new Stat((int)eStat.MaxMana, 20)
             },
-            new List<Stat>(), (int)eItemType.Jewelry, 0, 1, 340, 150, 20);
+            new List<Stat>(), (int)eItemType.Earring, 0, 1, 120, 100, 13);
 
-        items.Add(Jewelry1);
-        items.Add(Jewelry2);
-        items.Add(Jewelry3);
-    }
-
-    void CreateRunes()
-    {
-        Item Rune1 = new Item(4001,
+        Item Ring1 = new Item(9001,
             new List<Stat>
             {
-                //Rune planlamasindan sonra her runun verecegi belli statlar duruma gore buralara eklenebilir.
+                new Stat((int)eStat.MaxHealth, 40),
+                new Stat((int)eStat.MaxMana, 20)
             },
-            new List<Stat>(), (int)eItemType.Rune, 0, 1, 300, 60, 0);
+            new List<Stat>(), (int)eItemType.Ring, 0, 1, 120, 150, 13);
 
-        Item Rune2 = new Item(4002,
+        Item Bracelet1 = new Item(10001,
             new List<Stat>
             {
-                //Rune planlamasindan sonra her runun verecegi belli statlar duruma gore buralara eklenebilir.
+                new Stat((int)eStat.MaxHealth, 40),
+                new Stat((int)eStat.MaxMana, 20)
             },
-            new List<Stat>(), (int)eItemType.Rune, 0, 1, 500, 100, 0);
+            new List<Stat>(), (int)eItemType.Bracelet, 0, 1, 120, 150, 13);
 
-        Item Rune3 = new Item(4003,
+        Item Belt1 = new Item(11001,
             new List<Stat>
             {
-                //Rune planlamasindan sonra her runun verecegi belli statlar duruma gore buralara eklenebilir.
+                new Stat((int)eStat.MaxHealth, 40),
+                new Stat((int)eStat.MaxMana, 20)
             },
-            new List<Stat>(), (int)eItemType.Rune, 0, 1, 700, 150, 0);
+            new List<Stat>(), (int)eItemType.Belt, 0, 1, 120, 150, 13);
 
-        items.Add(Rune1);
-        items.Add(Rune2);
-        items.Add(Rune3);
-    }
-
-    void CreateResources()
-    {
-        Item Wood = new Item(5001,
-            new List<Stat>(),
-            new List<Stat>(), (int)eItemType.Resource, 0, 99, 5, 1, 0);
-
-        Item Stone = new Item(5002,
-            new List<Stat>(),
-            new List<Stat>(), (int)eItemType.Resource, 0, 99, 6, 1, 0);
-
-        items.Add(Wood);
-        items.Add(Stone);
-    }
-
-    void CreatePotions()
-    {
-        //daha sonra.
+        items.Add(Necklace1);
+        items.Add(Earring1);
+        items.Add(Ring1);
+        items.Add(Bracelet1);
+        items.Add(Belt1);
     }
 }

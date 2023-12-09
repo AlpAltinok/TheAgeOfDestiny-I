@@ -11,6 +11,7 @@ public class InventoryHandler : MonoBehaviour
     public Transform WeaponsParent, ArmoursParent, JewelriesParent;
     public Transform WeaponsTooltip, ArmoursTooltip, JewelriesTooltip;
     private Item lastSelectedWeapon, LastSelectedArmour, LastSelectedJewelry;
+    public Transform WeaponTooltipBonus, ArmourTooltipBonus, JevelryTooltipBonus;
 
     public Button[] TooltipButtons;
 
@@ -99,6 +100,7 @@ public class InventoryHandler : MonoBehaviour
         }
 
         RefreshInventoryUI();
+        GameManager.instance.MyStats.CalculateStats();
     }
 
     public void RemoveItem(int _index, int _amount, bool _removeCompletely = false)
@@ -136,7 +138,7 @@ public class InventoryHandler : MonoBehaviour
                 TooltipButtons[0].transform.GetChild(1).gameObject.SetActive(false);
                 TooltipButtons[0].transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = LanguageDatabase.instance.GetTextOf("Text_Tooltip_Unequip_Button");
             }
-            else if (item.type == (int)eItemType.Armour)
+            else if (item.type == (int)eItemType.Chest || item.type == (int)eItemType.Helmet || item.type == (int)eItemType.Pant || item.type == (int)eItemType.wristlet || item.type == (int)eItemType.Boot)
             {
                 newSlot = Instantiate(Resources.Load<GameObject>("UI/ItemElement"), ArmoursParent);
                 firstArmourItem = item;
@@ -144,7 +146,7 @@ public class InventoryHandler : MonoBehaviour
                 TooltipButtons[1].transform.GetChild(1).gameObject.SetActive(false);
                 TooltipButtons[1].transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = LanguageDatabase.instance.GetTextOf("Text_Tooltip_Unequip_Button");
             }
-            else if (item.type == (int)eItemType.Jewelry)
+            else if (item.type == (int)eItemType.Necklace || item.type == (int)eItemType.Earring || item.type == (int)eItemType.Ring || item.type == (int)eItemType.Belt || item.type == (int)eItemType.Bracelet)
             {
                 newSlot = Instantiate(Resources.Load<GameObject>("UI/ItemElement"), JewelriesParent);
                 firstJewelryItem = item;
@@ -175,7 +177,7 @@ public class InventoryHandler : MonoBehaviour
                     TooltipButtons[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = LanguageDatabase.instance.GetTextOf("Text_Tooltip_Equip_Button");
                 }
             }
-            else if (item.type == (int)eItemType.Armour)
+            else if (item.type == (int)eItemType.Chest || item.type == (int)eItemType.Helmet || item.type == (int)eItemType.Pant || item.type == (int)eItemType.wristlet || item.type == (int)eItemType.Boot)
             {
                 newSlot = Instantiate(Resources.Load<GameObject>("UI/ItemElement"), ArmoursParent);
                 if (firstArmourItem.id == 0)
@@ -186,7 +188,7 @@ public class InventoryHandler : MonoBehaviour
                     TooltipButtons[1].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = LanguageDatabase.instance.GetTextOf("Text_Tooltip_Equip_Button");
                 }
             }
-            else if (item.type == (int)eItemType.Jewelry)
+            else if (item.type == (int)eItemType.Necklace || item.type == (int)eItemType.Earring || item.type == (int)eItemType.Ring || item.type == (int)eItemType.Belt || item.type == (int)eItemType.Bracelet)
             {
                 newSlot = Instantiate(Resources.Load<GameObject>("UI/ItemElement"), JewelriesParent);
                 if (firstJewelryItem.id == 0)
@@ -300,64 +302,22 @@ public class InventoryHandler : MonoBehaviour
             return;
         }
 
-        if (_equippingItem.type == (int)eItemType.MainWeapon)
+        Item currentEquippingItem = GameManager.instance.CurrentActiveSave.Equipments[_equippingItem.type];
+        if (currentEquippingItem.id == 0) //slot bos, direkt olarak itemi ekipmanlar icindeki slotuna tasiyabiliriz.
         {
-            Item currentEquippingItem = GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.MainWeapon];
-            if (currentEquippingItem.id == 0) //slot bos, direkt olarak itemi ekipmanlar icindeki slotuna tasiyabiliriz.
-            {
-                GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.MainWeapon] = new Item(_equippingItem);
-                GameManager.instance.CurrentActiveSave.Inventory.RemoveAt(inventorySlot);
-            }
-            else
-            {
-                //Slotta baska bir silah var, o zaman bunlari replace edicez.
-                Item unequippingItem = new Item(GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.MainWeapon]);
-                GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.MainWeapon] = new Item(_equippingItem);
-                GameManager.instance.CurrentActiveSave.Inventory[inventorySlot] = unequippingItem;
-            }
+            GameManager.instance.CurrentActiveSave.Equipments[_equippingItem.type] = new Item(_equippingItem);
+            GameManager.instance.CurrentActiveSave.Inventory.RemoveAt(inventorySlot);
         }
-        else if (_equippingItem.type == (int)eItemType.Armour)
+        else
         {
-            Item currentEquippingItem = GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.Chest];
-            if (currentEquippingItem.id == 0) //slot bos, direkt olarak itemi ekipmanlar icindeki slotuna tasiyabiliriz.
-            {
-                GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.Chest] = new Item(_equippingItem);
-                GameManager.instance.CurrentActiveSave.Inventory.RemoveAt(inventorySlot);
-            }
-            else
-            {
-                //Slotta baska bir silah var, o zaman bunlari replace edicez.
-                Item unequippingItem = new Item(GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.Chest]);
-                GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.Chest] = new Item(_equippingItem);
-                GameManager.instance.CurrentActiveSave.Inventory[inventorySlot] = unequippingItem;
-            }
+            //Slotta baska bir silah var, o zaman bunlari replace edicez.
+            Item unequippingItem = new Item(GameManager.instance.CurrentActiveSave.Equipments[_equippingItem.type]);
+            GameManager.instance.CurrentActiveSave.Equipments[_equippingItem.type] = new Item(_equippingItem);
+            GameManager.instance.CurrentActiveSave.Inventory[inventorySlot] = unequippingItem;
         }
-        else if (_equippingItem.type == (int)eItemType.Jewelry)
-        {
-            Item currentEquippingItem1 = GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.Jewelry1];
-            Item currentEquippingItem2 = GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.Jewelry2];
-            if (currentEquippingItem1.id == 0) //slot bos, direkt olarak itemi ekipmanlar icindeki slotuna tasiyabiliriz.
-            {
-                GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.Jewelry1] = new Item(_equippingItem);
-                GameManager.instance.CurrentActiveSave.Inventory.RemoveAt(inventorySlot);
-            }
-            else
-            {
-                if (currentEquippingItem2.id == 0) //slot bos, direkt olarak itemi ekipmanlar icindeki slotuna tasiyabiliriz.
-                {
-                    GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.Jewelry2] = new Item(_equippingItem);
-                    GameManager.instance.CurrentActiveSave.Inventory.RemoveAt(inventorySlot);
-                }
-                else
-                {
-                    //Slotta baska bir silah var, o zaman bunlari replace edicez.
-                    Item unequippingItem2 = new Item(GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.Jewelry2]);
-                    GameManager.instance.CurrentActiveSave.Equipments[(int)Equipment.Jewelry2] = new Item(_equippingItem);
-                    GameManager.instance.CurrentActiveSave.Inventory[inventorySlot] = unequippingItem2;
-                }
-            }
-        }
+
         RefreshInventoryUI();
+        GameManager.instance.MyStats.CalculateStats();
     }
 
     public void UnequipItem(Item _unequippingItem)
@@ -384,24 +344,29 @@ public class InventoryHandler : MonoBehaviour
         GameManager.instance.CurrentActiveSave.Equipments[equipmentSlot] = ItemDatabase.instance.GetItem(0);
 
         RefreshInventoryUI();
+        GameManager.instance.MyStats.CalculateStats();
     }
 
     public void ShowTooltip(Item theItem)
     {
         Transform currentTooltip = null;
+        Transform currentTooltipBonus = null;
         if (theItem.type == (int)eItemType.MainWeapon)
         {
             currentTooltip = WeaponsTooltip;
+            currentTooltipBonus = WeaponTooltipBonus;
             lastSelectedWeapon = theItem;
         }
-        else if (theItem.type == (int)eItemType.Armour)
+        else if (theItem.type == (int)eItemType.Chest || theItem.type == (int)eItemType.Helmet || theItem.type == (int)eItemType.Pant || theItem.type == (int)eItemType.wristlet || theItem.type == (int)eItemType.Boot)
         {
             currentTooltip = ArmoursTooltip;
+            currentTooltipBonus = ArmourTooltipBonus;
             LastSelectedArmour = theItem;
         }
-        else if (theItem.type == (int)eItemType.Jewelry)
+        else if (theItem.type == (int)eItemType.Necklace || theItem.type == (int)eItemType.Earring || theItem.type == (int)eItemType.Ring || theItem.type == (int)eItemType.Belt || theItem.type == (int)eItemType.Bracelet)
         {
             currentTooltip = JewelriesTooltip;
+            currentTooltipBonus = JevelryTooltipBonus;
             LastSelectedJewelry = theItem;
         }
 
@@ -419,6 +384,38 @@ public class InventoryHandler : MonoBehaviour
             itemdesc.text = LanguageDatabase.instance.GetTextOf("Item_" + theItem.id + "_Desc");
             itemicon.sprite = Resources.Load<Sprite>("Icon/" + theItem.id);
             itemsellprice.text = theItem.sellToShopPrice + " " + LanguageDatabase.instance.GetTextOf("Gold");
+
+            if (currentTooltipBonus != null)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    currentTooltipBonus.GetChild(0 + (i * 2)).GetComponent<TextMeshProUGUI>().text = "";
+                    currentTooltipBonus.GetChild(1 + (i * 2)).GetComponent<TextMeshProUGUI>().text = "";
+                }
+                int statAmount = theItem.BaseStats.Count;
+                int statBonusAmount = theItem.BonusStats.Count;
+                int a = 0;
+                for (int i = 0; i < statAmount; i++)
+                {
+                    if (i >= 4)
+                    {
+                        a = 4;
+                        break;
+                    }
+                    currentTooltipBonus.GetChild(0 + (a * 2)).GetComponent<TextMeshProUGUI>().text = LanguageDatabase.instance.GetTextOf("Stat" + theItem.BaseStats[i].id) + ": ";
+                    currentTooltipBonus.GetChild(1 + (a * 2)).GetComponent<TextMeshProUGUI>().text = "+" + LanguageDatabase.instance.GetSymbolOfStat(theItem.BaseStats[i].id) + " " + theItem.BaseStats[i].amount;
+                    a++;
+                }
+                for (int i = 0; i < statBonusAmount; i++)
+                {
+                    if (a >= 4)
+                        break;
+
+                    currentTooltipBonus.GetChild(0 + (a * 2)).GetComponent<TextMeshProUGUI>().text = LanguageDatabase.instance.GetTextOf("Stat" + theItem.BonusStats[i].id) + ": ";
+                    currentTooltipBonus.GetChild(1 + (a * 2)).GetComponent<TextMeshProUGUI>().text = "+" + LanguageDatabase.instance.GetSymbolOfStat(theItem.BaseStats[i].id) + " " + theItem.BonusStats[i].amount;
+                    a++;
+                }
+            }
         }
     }
 
@@ -455,16 +452,15 @@ public class InventoryHandler : MonoBehaviour
 
     public void SelectAnItem(Item _selectedItem)
     {
-        if (_selectedItem.type == (int)eItemType.MainWeapon || _selectedItem.type == (int)eItemType.SecondaryWeapon ||
-                _selectedItem.type == (int)eItemType.DoubleWeapon)
+        if (_selectedItem.type == (int)eItemType.MainWeapon)
         {
             lastSelectedWeapon = _selectedItem;
         }
-        else if (_selectedItem.type == (int)eItemType.Armour)
+        else if (_selectedItem.type == (int)eItemType.Chest || _selectedItem.type == (int)eItemType.Helmet || _selectedItem.type == (int)eItemType.Pant || _selectedItem.type == (int)eItemType.wristlet || _selectedItem.type == (int)eItemType.Boot)
         {
             LastSelectedArmour = _selectedItem;
         }
-        else if (_selectedItem.type == (int)eItemType.Jewelry)
+        else if (_selectedItem.type == (int)eItemType.Necklace || _selectedItem.type == (int)eItemType.Earring || _selectedItem.type == (int)eItemType.Ring || _selectedItem.type == (int)eItemType.Belt || _selectedItem.type == (int)eItemType.Bracelet)
         {
             LastSelectedJewelry = _selectedItem;
         }
@@ -475,7 +471,8 @@ public class InventoryHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            AddItem(ItemDatabase.instance.GetItem(Random.Range(1,4) + 1000 * Random.Range(1, 4))); //Random.Range(1, 6)
+            List<int> testItemList = new List<int>() { 1001,2001,3001,4001,5001,6001,7001,8001,9001,10001, 11001};
+            AddItem(ItemDatabase.instance.GetItem(testItemList[Random.Range(0, testItemList.Count)])); //Random.Range(1, 6)
         }
     }
 
