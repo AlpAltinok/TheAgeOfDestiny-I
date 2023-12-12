@@ -4,48 +4,31 @@ using UnityEngine;
 
 public class KarakterMove : MonoBehaviour
 {
-    public float moveSpeed = 5.0f; // Karakterin yürüme hýzý
-    public float jumpForce = 10.0f; // Zýplama kuvveti
-    private bool isGrounded; // Karakterin yerde olup olmadýðýný kontrol etmek için kullanýlýr
+    public float speed = 5f; // Karakterin hareket hýzý
+    public float rotationSpeed = 300f; // Kamera döndürme hýzý
+    public float minYRotation = -80f; // Kameranýn minimum y ekseni rotasyonu
+    public float maxYRotation = 80f; // Kameranýn maksimum y ekseni rotasyonu
 
-    private Rigidbody rb;
-    public static bool Move;
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        Move = true;
-    }
+    private float currentXRotation = 0f;
 
     void Update()
     {
-        if (Move == true)
-        {
-            // Karakterin yatay hareketini al
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
+        // Karakterin hareketi
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
-            // Karakteri yatay olarak hareket ettir
-            Vector3 moveDirection = new Vector3(horizontalInput, 0, verticalInput);
-            Vector3 moveVelocity = moveDirection.normalized * moveSpeed;
-            rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
+        Vector3 moveDirection = new Vector3(horizontal, 0f, vertical).normalized;
+        Vector3 moveAmount = moveDirection * speed * Time.deltaTime;
+        transform.Translate(moveAmount);
 
-            // Karakterin zýplama kontrolü
-            if (isGrounded && Input.GetButtonDown("Jump"))
-            {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                isGrounded = false;
-            }
+        // Kamera döndürme
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
 
-        } 
-     
-    }
+        currentXRotation -= mouseY * rotationSpeed * Time.deltaTime;
+        currentXRotation = Mathf.Clamp(currentXRotation, minYRotation, maxYRotation);
 
-    // Karakter yerdeyken bu fonksiyon çaðrýlýr
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
+        transform.Rotate(Vector3.up * mouseX * rotationSpeed * Time.deltaTime);
+        Camera.main.transform.localRotation = Quaternion.Euler(currentXRotation, 0f, 0f);
     }
 }

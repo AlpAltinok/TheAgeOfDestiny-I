@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Animal
   - Water
+  - TargetLayer
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Water
   - UI
   - "Kap\u0131"
-  - 
+  - Etkinlestirici
   - 
   - 
   - 
