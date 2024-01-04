@@ -1072,7 +1072,7 @@ Terrain:
   m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_ReflectionProbeUsage: 0
-  m_MaterialTemplate: {fileID: 2100000, guid: ce645cb1003bd1642abc53121ed389e6, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 9813369f6c79a0f49b0eace4f764d8e1, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -3487,7 +3487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387590111}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 79.28369, y: 21.226875, z: -40.76953}
+  m_LocalPosition: {x: -71.461, y: 20.932, z: 43.264}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6101,7 +6101,6 @@ Transform:
   - {fileID: 1930037177}
   - {fileID: 1944568157}
   - {fileID: 1042624400}
-  - {fileID: 1537315007}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7170,6 +7169,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: prefab_sandy_slope_04_Leaves_Autumn
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001233886428536641, guid: fee83c387b19aa84d8ae92dc06b6e312,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fee83c387b19aa84d8ae92dc06b6e312, type: 3}
@@ -8859,63 +8863,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1134675138}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &990705554
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 621877520}
-    m_Modifications:
-    - target: {fileID: 1268013635547018, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
-      propertyPath: m_Name
-      value: Fir_07_Forest_cheap
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286980411060574, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
-      propertyPath: m_RootOrder
-      value: 203
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286980411060574, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -296.55408
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286980411060574, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -74.44723
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286980411060574, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 131.3844
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286980411060574, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99154794
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286980411060574, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.059230868
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286980411060574, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.107220545
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286980411060574, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.04275691
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286980411060574, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -6.217
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286980411060574, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -12.649
-      objectReference: {fileID: 0}
-    - target: {fileID: 4286980411060574, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 5.628
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e84c65e80a840e24581a78d8e6b77d3f, type: 3}
 --- !u!1001 &999551071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11864,6 +11811,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: prefab_Autumn_stones_01_3_Leaves
       objectReference: {fileID: 0}
+    - target: {fileID: 124529913939545404, guid: 015802647a95669499a7067dd9d4fbd2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 015802647a95669499a7067dd9d4fbd2, type: 3}
 --- !u!4 &1419675191 stripped
@@ -12453,12 +12405,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4504017761036973321, guid: b7e4654743449ed4195105042d0ea922,
     type: 3}
   m_PrefabInstance: {fileID: 5112841}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1537315007 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4286980411060574, guid: e84c65e80a840e24581a78d8e6b77d3f,
-    type: 3}
-  m_PrefabInstance: {fileID: 990705554}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1541662594 stripped
 Transform:
@@ -15087,11 +15033,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca36dd0861d9916489bb97c5bad0952a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -34.6
+      value: -42.3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca36dd0861d9916489bb97c5bad0952a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 64.900024
+      value: 58.9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca36dd0861d9916489bb97c5bad0952a, type: 3}
       propertyPath: m_LocalRotation.w
